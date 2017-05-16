@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>uno</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+
+        class Card {
+            constructor(color, value) {
+                this.color = color
+                this.value = value
+
+                var values = {
+                    10: "Skip",
+                    11: "Draw 2",
+                    12: "Reverse",
+                    13: "Wild",
+                    14: "Wild Draw Four"
+                }
+                var color = ["Green", "Blue", "Yellow", "Red"]
+
+                if (values[this.value]){
+                    return `${values[this.value]} of ${color[this.color]}`
+                } else {
+                    return `${this.value} of ${color[this.color]}`
+
+                    //return `${}`
+                }
+
+            }
+        }
+
+        function Deck(){
+            this.deck = []
+            this.hand = []
+
+                for (var color = 0; color < 4; color ++){
+                    for (var value = 1; value <=14; value++){
+                        this.deck.push(new Card(color, value))
+                    }
+                }
+                for (var color = 0; color < 4; color ++){
+                    for (var value = 1; value <=12; value++){
+                        this.deck.push(new Card(color, value))
+                    }
+                }
+                    this.deal = function(){
+                        this.hand.push(123)
+                        return this.deck.pop()
+                    }
+                    this.shuffle = function(){
+                        for (var i = 0; i <this.deck.length; i++){
+                            var j = Math.floor(Math.random()*this.deck.length)
+                            var temp = this.deck[j]
+                            this.deck[j] = this.deck[i]
+                            this.deck[i] = temp
+                        }
+                }
+            }
+            function Player(position, hand){
+                this.position = position
+                this.hand = hand
+                console.log(this.hand)
+                this.play_card = function(){
+                    console.log('playing card')
+                }
+            }
+
+            var my_deck = new Deck()
+            my_deck.shuffle()
+            var jon = new Player(1)
+            var shawn = new Player(2)
+            var ryan = new Player(3)
+            for (var p = 1; p < 4; p ++){
+                for (var i = 0; i < 7; i ++){
+                console.log(my_deck.deal());
+                }
+
+            }
+
+            for(var i = 0; i < 7; i++){
+                console.log(my_deck.deal())
+            }
+
+
+
+
+        </script>
+    </body>
+</html>
